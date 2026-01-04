@@ -1,8 +1,20 @@
 class Student:
     def __init__(self,  name, major, gpa) -> None:
         self.name = name
-        self.major = major
+        self.__major = major
         self.__gpa = gpa  #Encapsolation
+
+    @property
+    def major(self):
+       return self.__major.upper()
+    
+    @major.setter
+    def major(self, value):
+       if value != "":
+          self.__major = value
+       else: 
+          print("Inviled  Input")
+        
 
     def set_gpa(self, value): ## self mean  the var in the class
        ## To set the gpa data with validation
