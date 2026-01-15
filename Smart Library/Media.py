@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 from datetime  import datetime, timedelta
 
 class Media(ABC): ## ABC means that is abstracted class
-    def __init__(self,title: str,meadi_id:int) -> None:
+    def __init__(self,title: str,media_id:int) -> None:
         self.title = title
-        self.meadi_id = meadi_id
+        self.meadi_id = media_id
         self.is_borrowed = False # the (_) in the var mean is private
         self.due_date = None
 
