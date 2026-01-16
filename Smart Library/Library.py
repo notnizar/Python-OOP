@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import Media
+import User
 
 class Library:
     def __init__(self, name) -> None:
@@ -17,17 +18,22 @@ class Library:
             if item.media_id == media_id:
                 return item
         return None
-    def borrow_item(self, media_id):
+    def borrow_item(self,user, media_id):
         item = self.find_item_by_id(media_id)
-        if item:
-            if not item.is_borrowed:
-                item.is_borrowed = True
-                item.due_date = datetime.now() + timedelta(days=14)
-                print(f"Success '{item.title}' Due date: {item.due_date.strftime('%Y-%m-%d')}")
-            else:
-                print(f"Fail: '{item.title}' is already checked out")
-        else:
-            print("not found")
+
+
+        if not item or item.is_borrowed:
+            print(f"Item {media_id} is unavailable")
+            return
+        
+        if len(user.borrowed_items) >= user.get_limit():
+            print("You have  reachedd your limit")
+            return
+        
+        item.is_borrowed = True
+        item.due_date = datetime.now() + timedelta(days=14)
+        user.borrowed_items.append(item)
+        print(f"Success: {user.name} borrowed {item.title}.")
 
     def return_item(self, media_id):
         item = self.find_item_by_id(media_id)
