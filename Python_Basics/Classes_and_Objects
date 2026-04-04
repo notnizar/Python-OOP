@@ -1,0 +1,32 @@
+class Person:
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        self.isAttetude: bool = False
+
+    def attitudes(self) -> None:
+       if self.isAttetude:
+           print("He is Alrady attudide")
+       else:
+           self.isAttetude = True
+
+    def __add__(self, other):
+        return print(f"{self.name} is {self.isAttetude} And {other.name} is {other.isAttetude}")
+    
+    def __str__(self) -> str: ## the str should return a string that easy to read for users
+        return  f"My Name is {self.name} + And iam {self.age} Years old"
+    
+    def __repr__(self) -> str: ## repr should return a str for other devs
+        return ""
+
+p1 : Person = Person("Nizar",20)
+p2: Person = Person("Sahar",20)
+
+
+
+print(p1.name)
+print(p1.age)
+p1.attitudes()
+print(p1.isAttetude)
+print(p1 + p2)
+print(p1)
