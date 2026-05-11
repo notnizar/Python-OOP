@@ -23,8 +23,8 @@ class OrgaMember:
 
 class Employee(Person, OrgaMember):
     def __init__(self, name, nationalID, memberID, role, salary:float, dep:str):
-        Person().__init__(name, nationalID)
-        OrgaMember().__init__(self, memberID, role)
+        Person.__init__(name, nationalID)
+        OrgaMember.__init__(self, memberID, role)
         self.__salary = salary
         self.__dep = dep
 
